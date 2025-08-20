@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+  <defs>
+    <!-- Gradient -->
+    <linearGradient id="ph-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="50%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#EC4899"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Circular background -->
+  <circle cx="40" cy="40" r="38" fill="white" stroke="url(#ph-grad)" stroke-width="4"/>
+
+  <!-- Phone body -->
+  <rect x="25" y="18" width="30" height="44" rx="6" fill="url(#ph-grad)"/>
+
+  <!-- Phone button -->
+  <circle cx="40" cy="52" r="3" fill="white"/>
+
+  <!-- Hub circles γύρω -->
+  <circle cx="65" cy="40" r="5" fill="url(#ph-grad)" opacity="0.9"/>
+  <circle cx="55" cy="22" r="4" fill="url(#ph-grad)" opacity="0.7"/>
+  <circle cx="55" cy="58" r="4" fill="url(#ph-grad)" opacity="0.7"/>
+</svg>
