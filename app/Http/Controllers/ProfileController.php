@@ -12,18 +12,18 @@ use App\Models\Listing;
 class ProfileController extends Controller
 {
     public function public(User $user)
-{
-    $activeCount = Listing::active()->where('user_id', $user->id)->count();
+    {
+        $activeCount = Listing::active()->where('user_id', $user->id)->count();
 
-   
-    $listings = Listing::with('primaryImage')
-        ->active()
-        ->where('user_id', $user->id)
-        ->latest('published_at')
-        ->paginate(12);
 
-    return view('user.show', compact('user','activeCount','listings'));
-}
+        $listings = Listing::with('primaryImage')
+            ->active()
+            ->where('user_id', $user->id)
+            ->latest('published_at')
+            ->paginate(12);
+
+        return view('user.show', compact('user', 'activeCount', 'listings'));
+    }
 
     /**
      * Προβολή σελίδας προφίλ.
@@ -52,9 +52,9 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'name'   => ['required', 'string', 'max:255'],
-            'email'  => ['required', 'email', 'max:255'],
-            'city'   => ['nullable', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'city' => ['nullable', 'string', 'max:255'],
             'avatar' => ['nullable', 'image', 'max:2048'],
         ]);
 
@@ -70,9 +70,9 @@ class ProfileController extends Controller
             $user->avatar = $path;
         }
 
-        $user->name  = $request->name;
+        $user->name = $request->name;
         $user->email = $request->email;
-        $user->city  = $request->city;
+        $user->city = $request->city;
         $user->save();
 
         return redirect()->route('profile.show')->with('success', 'Το προφίλ ενημερώθηκε με επιτυχία.');

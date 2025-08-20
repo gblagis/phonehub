@@ -33,8 +33,16 @@ class ListingController extends Controller
     public function index(Request $request)
     {
         $filters = $request->only([
-            'q','brand','model','os','condition','city',
-            'min_price','max_price','year','seller'
+            'q',
+            'brand',
+            'model',
+            'os',
+            'condition',
+            'city',
+            'min_price',
+            'max_price',
+            'year',
+            'seller'
         ]);
 
         $listings = Listing::with('primaryImage')
@@ -44,7 +52,7 @@ class ListingController extends Controller
             ->paginate(12)
             ->withQueryString();
 
-        return view('listings.index', compact('listings','filters'));
+        return view('listings.index', compact('listings', 'filters'));
     }
 
     /**
@@ -57,7 +65,7 @@ class ListingController extends Controller
             404
         );
 
-        $listing->load(['images','user']);
+        $listing->load(['images', 'user']);
 
         $sellerActiveCount = Listing::active()
             ->where('user_id', $listing->user_id)
@@ -83,9 +91,9 @@ class ListingController extends Controller
     public function store(StoreListingRequest $request)
     {
         $data = $request->validated();
-        $data['user_id']      = $request->user()->id;
+        $data['user_id'] = $request->user()->id;
         $data['published_at'] = now();
-        $data['status']       = $data['status'] ?? 'active';
+        $data['status'] = $data['status'] ?? 'active';
 
         $listing = null;
 
@@ -127,7 +135,7 @@ class ListingController extends Controller
             //Per-image delete μέσω hidden inputs delete_images[]
             $ids = collect($request->input('delete_images', []))
                 ->filter(fn($v) => is_numeric($v))
-                ->map(fn($v) => (int)$v)
+                ->map(fn($v) => (int) $v)
                 ->unique()
                 ->values();
 
@@ -159,7 +167,7 @@ class ListingController extends Controller
 
         return redirect()
             ->route('listings.show', ['listing' => $listing->id])
-            ->with('success','Listing updated.');
+            ->with('success', 'Listing updated.');
     }
 
     /**
@@ -177,7 +185,7 @@ class ListingController extends Controller
 
         return redirect()
             ->route('dashboard')
-            ->with('success','Listing deleted.');
+            ->with('success', 'Listing deleted.');
     }
 
     /**
@@ -186,29 +194,32 @@ class ListingController extends Controller
      * - Κολλάει τις νέες εικόνες στο τέλος (ordering)
      * - Ορίζει primary την πρώτη που ανεβαίνει, μόνο αν δεν υπάρχει ήδη primary
      */
-   private function storeImages(Request $request, Listing $listing): void
-{
-    if (!$request->hasFile('photos')) return;
+    private function storeImages(Request $request, Listing $listing): void
+    {
+        if (!$request->hasFile('photos'))
+            return;
 
-    $incoming = $request->file('photos');
-    if (!is_array($incoming)) $incoming = [$incoming];
+        $incoming = $request->file('photos');
+        if (!is_array($incoming))
+            $incoming = [$incoming];
 
-    // από ποιο ordering ξεκινάμε
-    $startOrder = (int) $listing->images()->max('ordering');
-    $startOrder = $startOrder >= 0 ? $startOrder + 1 : 0;
+        // από ποιο ordering ξεκινάμε
+        $startOrder = (int) $listing->images()->max('ordering');
+        $startOrder = $startOrder >= 0 ? $startOrder + 1 : 0;
 
-    $hasPrimary = $listing->primaryImage()->exists();
+        $hasPrimary = $listing->primaryImage()->exists();
 
-    foreach ($incoming as $i => $file) {
-        if (!$file) continue;
+        foreach ($incoming as $i => $file) {
+            if (!$file)
+                continue;
 
-        $path = $file->store("listings/{$listing->id}", 'public');
+            $path = $file->store("listings/{$listing->id}", 'public');
 
-        $listing->images()->create([
-            'path'       => $path,
-            'ordering'   => $startOrder + $i,
-            'is_primary' => (!$hasPrimary && $i === 0), // κάνε την 1η primary μόνο αν δεν υπάρχει ήδη
-        ]);
+            $listing->images()->create([
+                'path' => $path,
+                'ordering' => $startOrder + $i,
+                'is_primary' => (!$hasPrimary && $i === 0), // κάνε την 1η primary μόνο αν δεν υπάρχει ήδη
+            ]);
+        }
     }
-}
 }

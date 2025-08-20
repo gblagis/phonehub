@@ -9,12 +9,12 @@ class ListingImage extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['listing_id','path','is_primary','ordering'];
+    protected $fillable = ['listing_id', 'path', 'is_primary', 'ordering'];
 
-    protected $casts = ['is_primary'=>'boolean'];
+    protected $casts = ['is_primary' => 'boolean'];
 
-    public function listing() 
-    { 
-        return $this->belongsTo(Listing::class); 
+    public function listing()
+    {
+        return $this->belongsTo(Listing::class);
     }
 }

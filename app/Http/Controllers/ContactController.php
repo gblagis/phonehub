@@ -16,8 +16,8 @@ class ContactController extends Controller
     public function store(Request $r)
     {
         $data = $r->validate([
-            'name'    => 'required|string|max:120',
-            'email'   => 'required|email',
+            'name' => 'required|string|max:120',
+            'email' => 'required|email',
             'message' => 'required|string|max:3000',
         ]);
 
@@ -35,8 +35,8 @@ class ContactController extends Controller
     public function listing(Request $r, Listing $listing)
     {
         $data = $r->validate([
-            'name'    => 'required|string|max:120',
-            'email'   => 'required|email',
+            'name' => 'required|string|max:120',
+            'email' => 'required|email',
             'message' => 'required|string|max:3000',
         ]);
 
@@ -47,15 +47,15 @@ class ContactController extends Controller
             return back()->withErrors(['email' => 'The seller does not have an email available. Please try calling.']);
         }
 
-        $url   = route('listings.show', $listing);
+        $url = route('listings.show', $listing);
         $title = $listing->title;
-        $body  = "Ad: {$title} (#{$listing->id})\nURL: {$url}\n\n".
-                 "Message from {$data['name']} <{$data['email']}>:\n\n{$data['message']}\n";
+        $body = "Ad: {$title} (#{$listing->id})\nURL: {$url}\n\n" .
+            "Message from {$data['name']} <{$data['email']}>:\n\n{$data['message']}\n";
 
         Mail::raw($body, function ($m) use ($to, $data, $title, $listing) {
             $m->to($to)
-              ->replyTo($data['email'], $data['name'])
-              ->subject("PhoneHub: New message for your ad (#{$listing->id}) {$title}");
+                ->replyTo($data['email'], $data['name'])
+                ->subject("PhoneHub: New message for your ad (#{$listing->id}) {$title}");
         });
 
         return back()->with('success', 'Your message has been sent to the seller.');
