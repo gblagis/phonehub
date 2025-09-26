@@ -29,9 +29,8 @@ class ContactController extends Controller
         return back()->with('success', 'Thanks! We’ll get back to you.');
     }
 
-    /**
-     * Μήνυμα προς πωλητή συγκεκριμένης αγγελίας.
-     */
+    
+    // Μήνυμα προς πωλητή συγκεκριμένης αγγελίας. 
     public function listing(Request $r, Listing $listing)
     {
         $data = $r->validate([
@@ -40,7 +39,7 @@ class ContactController extends Controller
             'message' => 'required|string|max:3000',
         ]);
 
-        // Παραλήπτης: email που δήλωσε ο πωλητής στην αγγελία, αλλιώς του λογαριασμού του
+        // Παραλήπτης: email που δήλωσε ο πωλητής στην αγγελία
         $to = $listing->contact_email ?: optional($listing->user)->email;
 
         if (!$to) {

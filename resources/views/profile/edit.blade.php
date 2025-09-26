@@ -58,7 +58,7 @@
 
             <button type="submit"
                 class="px-5 py-2 bg-blue-600 text-white text-sm font-medium rounded hover:bg-blue-700 transition">
-                Αποθήκευση
+                Save
             </button>
         </form>
     </div>

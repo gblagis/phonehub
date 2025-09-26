@@ -44,7 +44,7 @@
         $prefillName = old('name', optional(auth()->user())->name);
         $prefillEmail = old('email', optional(auth()->user())->email);
         $prefillMsg =
-            old('message') ?: "I'm interested in your listing #{$listing->id} ({$listing->title}). Please contact me.";
+            old('message') ?: "I'm interested in your listing {$listing->title}. Please contact me.";
     @endphp
 
     {{-- Flash messages --}}

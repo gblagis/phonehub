@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1 class="text-2xl font-bold mb-4">Contact us</h1>
+    <h1 class="text-2xl font-bold mb-4">Contact Us</h1>
     @if (session('success'))
         <div class="p-3 bg-green-100 border border-green-300 rounded mb-4">{{ session('success') }}</div>
     @endif

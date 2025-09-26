@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1 class="text-2xl font-bold mb-4">Search results</h1>
+    <h1 class="text-2xl font-bold mb-4">Search Results</h1>
 
     {{-- Μπάρα αναζήτησης  --}}
     <form class="mb-4 flex gap-2" method="GET" action="{{ route('listings.index') }}">

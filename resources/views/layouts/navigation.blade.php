@@ -28,7 +28,7 @@
         <nav class="hidden md:flex items-center gap-4">
           <a href="{{ route('contact.create') }}"
              class="text-sm hover:text-indigo-700 {{ request()->routeIs('contact.*') ? 'text-indigo-700 font-semibold' : 'text-slate-700' }}">
-             Contact
+             Contact Us
           </a>
 
           @auth
