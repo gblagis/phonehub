@@ -58,11 +58,11 @@ PhoneHub/
 ### 💻 Desktop View
 | Page | Preview |
 |------|----------|
-| 🏠 **Homepage** | ![Homepage Screenshot](screenshots/home.png) |
-| 📱 **Listings Page** | ![Listings Screenshot](screenshots/listing.png) |
-| 📄 **Listing Page** | ![Listing Details Screenshot](screenshots/listing2.png) |
-| 🧾 **Listing View** | ![Listing View Screenshot](screenshots/view.png) |
-| 📋 **User Dashboard** | ![Dashboard Screenshot](screenshots/dashboard.png) |
+| **Homepage** | ![Homepage Screenshot](screenshots/home.png) |
+| **Listings Page** | ![Listings Screenshot](screenshots/listing.png) |
+| **Listing Page** | ![Listing Details Screenshot](screenshots/listing2.png) |
+| **Listing View** | ![Listing View Screenshot](screenshots/view.png) |
+| **User Dashboard** | ![Dashboard Screenshot](screenshots/dashboard.png) |
 
 ## License
 
