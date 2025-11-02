@@ -75,7 +75,7 @@ class ProfileController extends Controller
         $user->city = $request->city;
         $user->save();
 
-        return redirect()->route('profile.show')->with('success', 'Το προφίλ ενημερώθηκε με επιτυχία.');
+        return redirect()->route('profile.show')->with('success', 'Profile updated successfully.');
     }
 
     /**
@@ -100,6 +100,6 @@ class ProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return Redirect::to('/')->with('success', 'Ο λογαριασμός διαγράφηκε με επιτυχία.');
+        return Redirect::to('/')->with('success', 'The account was successfully deleted.');
     }
 }

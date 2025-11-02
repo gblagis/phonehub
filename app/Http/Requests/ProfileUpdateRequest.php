@@ -9,7 +9,7 @@ use Illuminate\Validation\Rule;
 class ProfileUpdateRequest extends FormRequest
 {
     /**
-     * Get the validation rules that apply to the request.
+     * Λάβετε τους κανόνες επικύρωσης που ισχύουν για το αίτημα.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */

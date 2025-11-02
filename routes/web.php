@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ListingController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ListingController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 
 // Public
 Route::get('/', [ListingController::class, 'home'])->name('home');
@@ -28,9 +28,9 @@ Route::middleware('auth')->group(function () {
     Route::put('/listings/{listing}', [ListingController::class, 'update'])->name('listings.update');
     Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])->name('listings.destroy');
 
-    // Contact seller 
+    // Contact seller
     Route::post('/listings/{listing}/contact', [ContactController::class, 'listing'])
-        ->whereNumber('listing') 
+        ->whereNumber('listing')
         ->name('listings.contact');
 
     // Dashboard

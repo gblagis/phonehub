@@ -4,9 +4,9 @@
 
 @section('content')
     @php
-        // Server variables for the view (avatar, ownership, auth, phone/email)
+        // Μεταβλητές διακομιστή για την προβολή (avatar, ιδιοκτησία, εξουσιοδότηση, τηλέφωνο/email)
 
-        // Build a robust photo URLs collection from various structures (relation/array/strings)
+        
         $rawImages = $listing->images ?? [];
         $photos = collect($rawImages)
             ->map(function ($p) {
@@ -43,8 +43,7 @@
         // Prefill fields for email modal
         $prefillName = old('name', optional(auth()->user())->name);
         $prefillEmail = old('email', optional(auth()->user())->email);
-        $prefillMsg =
-            old('message') ?: "I'm interested in your listing {$listing->title}. Please contact me.";
+        $prefillMsg = old('message') ?: "I'm interested in your listing {$listing->title}. Please contact me.";
     @endphp
 
     {{-- Flash messages --}}
@@ -74,9 +73,9 @@
                         <div class="w-full h-full grid place-items-center text-gray-400 text-sm">No images</div>
                     @endif
 
-                    {{-- ALWAYS render arrows when there's at least one image (even if only 1) --}}
+                    {{-- ΠΑΝΤΑ να αποδίδονται τα βέλη όταν υπάρχει τουλάχιστον μία εικόνα (ακόμα κι αν είναι μόνο 1) --}}
                     @if ($photosCount)
-                        {{-- Overlay controls - absolutely positioned, do not affect layout --}}
+                        {{-- Στοιχεία ελέγχου επικάλυψης - απόλυτα τοποθετημένα, δεν επηρεάζουν τη διάταξη --}}
                         <div class="pointer-events-none absolute inset-0 flex items-center justify-between px-2">
                             <button id="gallery-prev" aria-label="Previous"
                                 class="pointer-events-auto z-20
@@ -308,7 +307,7 @@
                         </div>
                         <button type="submit"
                             class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg py-2">
-                            Send ✈️
+                            Send
                         </button>
                     </div>
                 </form>

@@ -4,9 +4,7 @@ import Alpine from 'alpinejs';
 window.Alpine = Alpine;
 Alpine.start();
 
-/* ===========================
-   Gallery (thumbnails + arrows)
-   =========================== */
+// Gallery (thumbnails + arrows) 
 (function () {
   const main = document.getElementById('gallery-main');
   if (!main) return;
@@ -123,16 +121,14 @@ Alpine.start();
   );
 })();
 
-/* ===========================
-   Lightbox (zoom, pan, arrows)
-   =========================== */
+// Lightbox (zoom, pan, arrows)
 (function () {
   const main = document.getElementById('gallery-main');
   const thumbsWrap = document.getElementById('gallery-thumbs');
   const lb = document.getElementById('lightbox');
   if (!main || !lb) return;
 
-  // if there is no thumbs strip (single image), create a virtual one with the main image
+  // αν δεν υπάρχει λωρίδα (μία εικόνα), δημιουργεί μια εικονική με την κύρια εικόνα
   let thumbs = [];
   if (thumbsWrap) {
     thumbs = Array.from(thumbsWrap.querySelectorAll('button[data-index]'));
@@ -296,9 +292,7 @@ Alpine.start();
   });
 })();
 
-/* ==========================================
-   Photo uploader (create/edit) — no file limit
-   ========================================== */
+// Photo uploader (create/edit) 
 function initPhotoUploader(inputSelector, previewSelector, max = Infinity) {
   const input = document.querySelector(inputSelector);
   const previews = document.querySelector(previewSelector);
@@ -347,7 +341,7 @@ function initPhotoUploader(inputSelector, previewSelector, max = Infinity) {
     });
   }
 
-  // Allow selecting same filenames repeatedly
+  // Επιτρέπεται η επανειλημμένη επιλογή των ίδιων ονομάτων αρχείων
   input.addEventListener('click', () => {
     input.value = '';
   });
@@ -368,9 +362,7 @@ function initPhotoUploader(inputSelector, previewSelector, max = Infinity) {
   updateStatus();
 }
 
-/* ==========================================
-   Select-all & counter for delete_images[] (edit)
-   ========================================== */
+// Επιλογή/Μετρητής για delete_images[] (edit)
 function initDeleteSelectionUI(wrapperSelector, selectAllSelector, counterSelector) {
   const wrap = document.querySelector(wrapperSelector);
   if (!wrap) return;
@@ -402,9 +394,7 @@ function initDeleteSelectionUI(wrapperSelector, selectAllSelector, counterSelect
   updateCounter();
 }
 
-/* ===========================
-   Share button
-   =========================== */
+// Share button
 function initShareButton(selector) {
   const btn = document.querySelector(selector);
   if (!btn) return;
@@ -428,9 +418,7 @@ function initShareButton(selector) {
   });
 }
 
-/* ===========================
-   Phone modal (simple)
-   =========================== */
+// Phone modal 
 function initPhoneModal() {
   const btn = document.getElementById('reveal-phone-btn');
   const modal = document.getElementById('phone-modal');
@@ -462,9 +450,7 @@ function initPhoneModal() {
   });
 }
 
-/* ===========================
-   Email modal (auth users)
-   =========================== */
+// Email modal (auth users)
 function initEmailModal() {
   const openBtn = document.getElementById('open-email-btn');
   const modal = document.getElementById('email-modal');
@@ -487,9 +473,7 @@ function initEmailModal() {
   });
 }
 
-/* ===========================
-   Login-required modal (guests)
-   =========================== */
+// Login-required modal (guests)
 function initLoginRequiredModal() {
   const openBtn = document.getElementById('open-email-login');
   const modal = document.getElementById('login-required-modal');
@@ -512,9 +496,7 @@ function initLoginRequiredModal() {
   });
 }
 
-/* ===========================
-   Dashboard: Delete modal
-   =========================== */
+// Dashboard: Delete modal
 function initDashboardDeleteModal(){
   const modal    = document.getElementById('delete-modal');
   if (!modal) return; // δεν είμαστε στο dashboard
@@ -554,20 +536,19 @@ function initDashboardDeleteModal(){
 }
 
 
-/* ===========================
-   Boot
-   =========================== */
+// Boot
 document.addEventListener('DOMContentLoaded', () => {
-  // Unlimited uploader
-  initPhotoUploader('#photos', '#previews'); // no limit
+  // Απεριόριστο πρόγραμμα μεταφόρτωσης
+  initPhotoUploader('#photos', '#previews'); 
 
-  // Select-all + counter for delete checkboxes (edit page only; safe if not present)
+  // Επιλογή όλων + μετρητής για πλαίσια ελέγχου διαγραφής (μόνο επεξεργασία σελίδας· ασφαλές εάν δεν υπάρχει)
+
   initDeleteSelectionUI('#existing-images', '#del-select-all', '#del-counter');
 
   // Share
   initShareButton('#share-btn');
 
-  // Lightbox opener button (if present)
+  // Κουμπί ανοίγματος Lightbox (εάν υπάρχει)
   const openBtn = document.getElementById('gallery-open');
   const mainImg = document.getElementById('gallery-main');
   if (openBtn && mainImg) openBtn.addEventListener('click', () => mainImg.click());

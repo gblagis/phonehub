@@ -150,7 +150,7 @@ class ListingController extends Controller
                 }
             }
 
-            // 2b) Αν δεν υπάρχει πια primary μετά τις διαγραφές, όρισε μία
+            // Αν δεν υπάρχει πια primary μετά τις διαγραφές, όρισε μία
             if (!$listing->primaryImage()->exists()) {
                 $first = $listing->images()->orderBy('ordering')->first();
                 if ($first) {
@@ -159,7 +159,7 @@ class ListingController extends Controller
                 }
             }
 
-            // 3) Upload νέων (προσθήκη στο τέλος με σωστό ordering)
+            // Upload νέων (προσθήκη στο τέλος με σωστό ordering)
             $this->storeImages($request, $listing);
         });
 
@@ -190,7 +190,6 @@ class ListingController extends Controller
 
     /**
      * Αποθήκευση εικόνων
-     * - Δέχεται έως 5 αρχεία (από το αίτημα)
      * - Κολλάει τις νέες εικόνες στο τέλος (ordering)
      * - Ορίζει primary την πρώτη που ανεβαίνει, μόνο αν δεν υπάρχει ήδη primary
      */

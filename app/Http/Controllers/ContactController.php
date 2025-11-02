@@ -22,8 +22,9 @@ class ContactController extends Controller
         ]);
 
         // Dev: MAIL_MAILER=log για να γράφει στο storage/logs/laravel.log
-        Mail::raw("From: {$data['name']} <{$data['email']}>\n\n{$data['message']}", function ($m) {
-            $m->to(config('mail.from.address'))->subject('PhoneHub Contact');
+        Mail::raw("From: {$data['name']} <{$data['email']}>\n\n{$data['message']}", function ($m) use ($data) {
+            $m->from($data['email'], $data['name']) 
+                ->to(config('mail.from.address'))->subject('PhoneHub Contact');
         });
 
         return back()->with('success', 'Thanks! We’ll get back to you.');
@@ -52,7 +53,8 @@ class ContactController extends Controller
             "Message from {$data['name']} <{$data['email']}>:\n\n{$data['message']}\n";
 
         Mail::raw($body, function ($m) use ($to, $data, $title, $listing) {
-            $m->to($to)
+            $m->from($data['email'])
+                ->to($to)
                 ->replyTo($data['email'], $data['name'])
                 ->subject("PhoneHub: New message for your ad (#{$listing->id}) {$title}");
         });

@@ -19,8 +19,6 @@
             {{-- Info --}}
             <div class="flex-1 space-y-2">
                 <h1 class="text-2xl font-semibold">{{ Auth::user()->name }}</h1>
-
-
                 <div class="mt-4 space-y-1 text-sm text-gray-700">
                     <div>
                         📍 City: {{ Auth::user()->city ?? 'Not defined' }}

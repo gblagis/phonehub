@@ -4,7 +4,7 @@
     <div>
         <label class="block text-sm font-medium mb-1">Title</label>
         <input class="w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200" name="title"
-            value="{{ old('title', $listing->title ?? '') }}" placeholder="e.g. iPhone 13 Pro Max">
+            value="{{ old('title', $listing->title ?? '') }}">
         @error('title')
             <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
         @enderror
@@ -13,7 +13,7 @@
     <div>
         <label class="block text-sm font-medium mb-1">Brand</label>
         <input class="w-full border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-200" name="brand"
-            value="{{ old('brand', $listing->brand ?? '') }}" placeholder="e.g. Apple">
+            value="{{ old('brand', $listing->brand ?? '') }}">
         @error('brand')
             <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
         @enderror
